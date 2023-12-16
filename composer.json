@@ -11,9 +11,11 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
-        "livewire/volt": "^1.0"
+        "livewire/volt": "^1.0",
+        "masmerise/livewire-toaster": "*"
     },
     "require-dev": {
+        "askdkc/breezejp": "^1.7",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.26",
         "laravel/pint": "^1.0",

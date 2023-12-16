@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Pages\Products\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,7 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 require __DIR__.'/auth.php';
+
+Route::get('/products', Index::class)
+    ->middleware(['auth'])
+    ->name('products');
