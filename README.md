@@ -20,7 +20,7 @@ sail up -d
 cp -p .env.example .env
 sail artisan key:generate
 sail artisan migrate
-sail artisan db:seed class=MasterProductSeeder
+sail artisan db:seed --class=MasterProductSeeder
 sail artisan storage:link
 ```
 
