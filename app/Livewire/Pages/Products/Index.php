@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Products;
 
+use App\Contexts\Store\Application\FavoriteProduct\Actions\Toggle;
 use App\Contexts\Store\Domain\Cart;
 use App\Contexts\Store\Domain\FavoriteProduct;
 use App\Contexts\Store\Presentation\Product\Queries\FindForIndex;
@@ -39,11 +40,11 @@ final class Index extends Component
         return view('livewire.pages.products.index');
     }
 
-    public function toggleFavoriteProduct(int $productId, FavoriteProduct\Commands\Save $saveCommand): void
+    public function toggleFavoriteProduct(int $productId, Toggle $toggleAction, FavoriteProduct\Queries\FindByUser $favoriteProductQuery): void
     {
         try {
-            $this->favoriteProduct->toggle($productId);
-            $saveCommand->execute($this->favoriteProduct);
+            $toggleAction->execute(auth()->id(), $productId);
+            $this->favoriteProduct = $favoriteProductQuery->execute(auth()->id());
             $this->dispatch('favorite-product-changed', count: $this->favoriteProduct->count());
         } catch (FavoriteProduct\Exceptions\LimitExceededException) {
             Toaster::warning('お気に入りの上限に達しました');
